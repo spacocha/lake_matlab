@@ -5,7 +5,7 @@
 	5e4,	... carbon_source
 	0.35e4,	... oxygen_source
 	1500.0,	... methane_source
-	1.0,	... t_max
+    0.1,	... t_max
 	0.3,	... fe_precipitation
     0.3,    ... carbon precip
 	50.0,	... diffusion_constant
@@ -27,5 +27,6 @@
 	60.0,	... concs0_fetot
 	10.0,	... pm_ratio_fe
 	250.0,	... concs0_stot
-	10.0	... pm_ratio_s
+	10.0,	... pm_ratio_s
+    concs0  ... Import from input file
 );

@@ -1,4 +1,4 @@
-function [time_slices, concs_history, rates_history] = lake(oxygen_bubble_rate, nitrogen_source, nitrogen_ratio, carbon_source, oxygen_source, methane_source, t_max, fe_precipitation, carbon_precipitation, diffusion_constant, ma_op_o_fe_rate_const, ma_op_o_n_rate_const, ma_op_o_s_rate_const, ma_op_fe_n_rate_const, ma_op_ch4_o_rate_const, ma_op_ch4_s_rate_const, primary_ox_rate_const, c_lim_o, c_lim_n, c_lim_fe, c_lim_s, concs0_c, concs0_o, concs0_ntot, pm_ratio_n, concs0_fetot, pm_ratio_fe, concs0_stot, pm_ratio_s)
+function [time_slices, concs_history, rates_history] = lake(oxygen_bubble_rate, nitrogen_source, nitrogen_ratio, carbon_source, oxygen_source, methane_source, t_max, fe_precipitation, carbon_precipitation, diffusion_constant, ma_op_o_fe_rate_const, ma_op_o_n_rate_const, ma_op_o_s_rate_const, ma_op_fe_n_rate_const, ma_op_ch4_o_rate_const, ma_op_ch4_s_rate_const, primary_ox_rate_const, c_lim_o, c_lim_n, c_lim_fe, c_lim_s, concs0_c, concs0_o, concs0_ntot, pm_ratio_n, concs0_fetot, pm_ratio_fe, concs0_stot, pm_ratio_s, concs0)
 
 %% Constants
 % These are constants that make assertions about the actual system
@@ -33,15 +33,15 @@ precipitation_constant_input = [
 % mass action, one product reactions (ma_op_rxns)
 ma_op_rxns = [
     % secondary oxidations
-    % aA + bB -> cC (columns: a, A, b, B, c, C, rate constant)
+    % aA + bB -> cC + dD (columns: a, A, b, B, c, C, rate constant)
     % constants k_i are from HWvC
     % units: [rates] = uM-1 yr-1
-    0.25 s('O')      1   s('Fe-')    1   s('Fe+')    ma_op_o_fe_rate_const   % k_2^sr = 1e7 M-1 yr-1
-    2    s('O')      1   s('N-')     1   s('N+')     ma_op_o_n_rate_const    % k_4^sr = 5e6 M-1 yr-1
-    2    s('O')      1   s('S-')     1   s('S+')     ma_op_o_s_rate_const    % k_5^sr = 1.6e5 M-1 yr-1
-    5    s('Fe-')    1   s('N+')     5   s('Fe+')    ma_op_fe_n_rate_const   % swo> my guess
-    1    s('CH4')    2   s('O')      1   s('null')   ma_op_ch4_o_rate_const  % k_9^sr = 1e10 M-1 yr-1
-    1    s('CH4')    1   s('S+')     1   s('S-')     ma_op_ch4_s_rate_const  % k_10^sr = 1e5 M-1 yr-1
+    0.25 s('O')      1   s('Fe-')    1   s('Fe+')	ma_op_o_fe_rate_const   % k_2^sr = 1e7 M-1 yr-1
+    2    s('O')      1   s('N-')     1   s('N+')	ma_op_o_n_rate_const    % k_4^sr = 5e6 M-1 yr-1
+    2    s('O')      1   s('S-')     1   s('S+')	ma_op_o_s_rate_const    % k_5^sr = 1.6e5 M-1 yr-1
+    5    s('Fe-')    1   s('N+')     5   s('Fe+')	ma_op_fe_n_rate_const   % swo> my guess
+    1    s('CH4')    2   s('O')      1   s('null')	ma_op_ch4_o_rate_const  % k_9^sr = 1e10 M-1 yr-1
+    1    s('CH4')    1   s('S+')     1   s('S-')	ma_op_ch4_s_rate_const  % k_10^sr = 1e5 M-1 yr-1
 ];
 [n_ma_op_rxns, ~] = size(ma_op_rxns);
 
@@ -60,22 +60,22 @@ po_teas = [
 %% Initial concentrations
 % initialize the lake, asserting flat profiles for each metabolite
 % metabolites not mentioned have concentration 0
-concs0 = zeros(n_x, n_species);
+%concs0 = zeros(n_x, n_species);
 
-concs0(:, s('C')) = concs0_c;
-concs0(:, s('O')) = concs0_o;
+%concs0(:, s('C')) = concs0_c;
+%concs0(:, s('O')) = concs0_o;
 
 %Start with an initial conc of N (CONCS0_NTOT) and a ratio of plus to minus PM_RATIO_N
-concs0(:, s('N+')) = concs0_ntot / (1.0 + (1.0 / pm_ratio_n));
-concs0(:, s('N-')) = concs0_ntot - concs0(:, s('N+'));
+%concs0(:, s('N+')) = concs0_ntot / (1.0 + (1.0 / pm_ratio_n));
+%concs0(:, s('N-')) = concs0_ntot - concs0(:, s('N+'));
 
 %Start with an initial conc of FE (CONCS0_FETOT) and a ratio of plus to minus PM_RATIO_FE
-concs0(:, s('Fe+')) = concs0_fetot / (1.0 + (1.0 / pm_ratio_fe));
-concs0(:, s('Fe-')) = concs0_fetot - concs0(:, s('Fe+'));
+%concs0(:, s('Fe+')) = concs0_fetot / (1.0 + (1.0 / pm_ratio_fe));
+%concs0(:, s('Fe-')) = concs0_fetot - concs0(:, s('Fe+'));
 
 %Start with an initial conc of S (CONCS0_STOT) and a ratio of plus to minus PM_RATIO_S
-concs0(:, s('S+')) = concs0_stot / (1.0 + (1.0 / pm_ratio_s));
-concs0(:, s('S-')) = concs0_stot - concs0(:, s('S+'));
+%concs0(:, s('S+')) = concs0_stot / (1.0 + (1.0 / pm_ratio_s));
+%concs0(:, s('S-')) = concs0_stot - concs0(:, s('S+'));
 
 
 %% Internal parameters
