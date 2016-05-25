@@ -2,14 +2,14 @@
 % This script loads up the concentration and rate data from the last
 % interactive run and plots each one on its own profile.
 
-% load up the data
-load('history.mat')
-conc_names = textread('conc_names.txt', '%s', 'delimiter', '\n');
-rate_names = textread('rate_names.txt', '%s', 'delimiter', '\n');
-depths = dlmread('depths.txt');
+% load up the data from interactive after writing it
+load('./data/history.mat')
+conc_names = textread('../analysis/profiles/conc_names.txt', '%s', 'delimiter', '\n');
+rate_names = textread('../analysis/profiles/rate_names.txt', '%s', 'delimiter', '\n');
+depths = dlmread('../analysis/profiles/depths.txt');
 
 % load the color scheme
-load('my_color.mat');
+load('../analysis/profiles/my_color.mat');
 colormap(map);
 
 % figure out the number of figures to make
