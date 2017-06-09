@@ -1,4 +1,4 @@
-function [time_slices, concs_history, rates_history] = lake(oxygen_bubble_rate, nitrogen_source, nitrogen_ratio, carbon_source, oxygen_source, methane_source, t_max, fe_precipitation, carbon_precipitation, diffusion_constant, ma_op_o_fe_rate_const, ma_op_o_n_rate_const, ma_op_o_s_rate_const, ma_op_fe_n_rate_const, ma_op_ch4_o_rate_const, ma_op_ch4_s_rate_const, primary_ox_rate_const, c_lim_o, c_lim_n, c_lim_fe, c_lim_s, concs0_c, concs0_o, concs0_ntot, pm_ratio_n, concs0_fetot, pm_ratio_fe, concs0_stot, pm_ratio_s, concs0, Dplus, Dminus)
+function [time_slices, concs_history, rates_history] = lake(oxygen_bubble_rate, nitrogen_source, nitrogen_ratio, carbon_source, oxygen_source, methane_source, t_max, fe_precipitation, carbon_precipitation, diffusion_constant, ma_op_o_fe_rate_const, ma_op_o_n_rate_const, ma_op_o_s_rate_const, ma_op_fe_n_rate_const, ma_op_s_n_rate_const, ma_op_ch4_o_rate_const, ma_op_ch4_s_rate_const, primary_ox_rate_const, c_lim_o, c_lim_n, c_lim_fe, c_lim_s, concs0_c, concs0_o, concs0_ntot, pm_ratio_n, concs0_fetot, pm_ratio_fe, concs0_stot, pm_ratio_s, concs0, Dplus, Dminus)
 
 %% Constants
 % These are constants that make assertions about the actual system
@@ -40,6 +40,7 @@ ma_op_rxns = [
     2    s('O')      1   s('N-')     1   s('N+')	ma_op_o_n_rate_const    % k_4^sr = 5e6 M-1 yr-1
     2    s('O')      1   s('S-')     1   s('S+')	ma_op_o_s_rate_const    % k_5^sr = 1.6e5 M-1 yr-1
     5    s('Fe-')    1   s('N+')     5   s('Fe+')	ma_op_fe_n_rate_const   % swo> my guess
+    5    s('S-')     8   s('N+')     5   s('S+')        ma_op_s_n_rate_const    %spp> my guess
     1    s('CH4')    2   s('O')      1   s('null')	ma_op_ch4_o_rate_const  % k_9^sr = 1e10 M-1 yr-1
     1    s('CH4')    1   s('S+')     1   s('S-')	ma_op_ch4_s_rate_const  % k_10^sr = 1e5 M-1 yr-1
 ];

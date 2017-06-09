@@ -2,6 +2,7 @@ iron_oxidation_(oxygen)
 ammonia_oxidation
 sulfur_oxidation
 iron_oxidation_(nitrate)
+sulfur_oxidation_(nitrate)
 methanotrophy_(oxygen)
 methanotrophy_(sulfate)
 aerobic_heterotrophy
