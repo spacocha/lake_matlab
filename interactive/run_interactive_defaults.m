@@ -6,7 +6,7 @@
 	6.6e3,	... oxygen_source
 	2830.0,	... methane_source
         0.4,	... t_max
-	0.3,	... sminus_precipitation
+	0.0,	... sminus_precipitation
 	0.3,    ... fe_precipitation
 	0.3,    ... carbon precip
 	50,	... diffusion_constant
