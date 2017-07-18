@@ -10,11 +10,11 @@
 	0.3,    ... fe_precipitation
 	0.3,    ... carbon precip
 	50,	... diffusion_constant
-	1e4, 	... ma_op_o_fe_rate_const
+	10, 	... ma_op_o_fe_rate_const
 	5.0,	... ma_op_o_n_rate_const
 	0.16,	... ma_op_o_s_rate_const
 	1.0,	... ma_op_fe_n_rate_const
-	snrate,    ... ma_op_s_n_rate_const
+	0.0,    ... ma_op_s_n_rate_const
 	1e4,    ... ma_op_ch4_o_rate_const
 	0.01,	... ma_op_ch4_s_rate_const
 	1,	    ... primary_ox_rate_const
