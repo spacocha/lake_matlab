@@ -4,6 +4,7 @@ sulfur_oxidation
 iron_oxidation_(nitrate)
 sulfur_oxidation_(nitrate)
 methanotrophy_(oxygen)
+methanotrophy_(nitrate)
 methanotrophy_(sulfate)
 aerobic_heterotrophy
 denitrification

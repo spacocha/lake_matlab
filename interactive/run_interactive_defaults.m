@@ -16,19 +16,12 @@
 	1.0,	... ma_op_fe_n_rate_const
 	0.0,    ... ma_op_s_n_rate_const
 	1e4,    ... ma_op_ch4_o_rate_const
+	0.0,    ... ma_op_ch4_n_rate_const
 	0.01,	... ma_op_ch4_s_rate_const
 	1,	    ... primary_ox_rate_const
 	20.0,	... c_lim_o
 	5.0,	... c_lim_n
 	0.1,	    ... c_lim_fe
 	30,	    ... c_lim_s
-	200.0,	... concs0_c
-	50.0,	... concs0_o
-	100.0,	... concs0_ntot
-	10.0,	... pm_ratio_n
-	60.0,	... concs0_fetot
-	10.0,	... pm_ratio_fe
-	250.0,	... concs0_stot
-	10.0,	... pm_ratio_s
-    concs0  ... Import from input file
+        concs0  ... Import from input file
 );
