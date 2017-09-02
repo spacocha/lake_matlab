@@ -9,7 +9,7 @@ rate_names = textread('../analysis/profiles/rate_names.txt', '%s', 'delimiter', 
 depths = dlmread('../analysis/profiles/depths.txt');
 
 % load the color scheme
-%colormap(map);
+colormap(gray);
 
 % figure out the number of figures to make
 [~, ~, n_concs] = size(concs_history);
