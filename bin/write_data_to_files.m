@@ -1,6 +1,6 @@
 % assume that rates_history, time_slices, and concs_history are loaded already
 
-prefix = 'data';
+prefix = './plots/data';
 
 % save the time data
 fn = sprintf('%s/time.txt', prefix);
